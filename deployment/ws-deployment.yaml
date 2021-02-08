@@ -1,25 +1,26 @@
 # A. 基本項目
+# A. 基本項目
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-nodejs-deployment
+  name: photoview-deployment
 
 # B. Deploymentのスペック
 spec:
   replicas: 5   # レプリカ数
   selector:
     matchLabels:
-      app: sample-nodejs   # テンプレートの検索条件
+      app: photo-view   # テンプレートの検索条件
 
   # C. Podのテンプレート
   template:
     metadata:
       labels:
-        app: sample-nodejs
+        app: photo-view
         env: stage
     spec:
       containers:
-      - image: tsunomurhpe.azurecr.io/sample-nodejs:2020110902   # コンテナイメージの場所
-        name: sample-nodejs-container   # コンテナ名
+      - image: tsunomurhpe.azurecr.io/photo-view:v1.0   # コンテナイメージの場所
+        name: photoview-container   # コンテナ名
         ports:
         - containerPort: 80   # ポート番号
